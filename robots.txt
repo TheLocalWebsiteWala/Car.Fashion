@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://carfestion.in/sitemap.xml
+Sitemap: https://carfashion.in/sitemap.xml

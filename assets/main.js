@@ -1,4 +1,4 @@
-/* Car Festion — animations & interactive behaviour */
+/* Car Fashion — animations & interactive behaviour */
 (function () {
   "use strict";
 
@@ -226,7 +226,7 @@
 
           // Generate WhatsApp direct reservation link
           var waText = encodeURIComponent(
-            "Hello Car Fashion / Car Festion Surat,\n\nI want to book an appointment.\n*Name:* " +
+            "Hello Car Fashion Surat,\n\nI want to book an appointment.\n*Name:* " +
               (name || "Customer") +
               "\n*Phone:* " +
               (phone || "Not specified") +
@@ -256,8 +256,8 @@
           var isPrivacy = text.includes("privacy");
           var modalTitle = isPrivacy ? "Privacy Policy" : "Terms of Service";
           var modalContent = isPrivacy
-            ? "Car Fashion (Car Festion Surat) respects your privacy. We strictly collect only necessary diagnostic and contact details to service your vehicle and schedule appointments. We never sell or share your personal data with third-party advertisers."
-            : "All automotive servicing, accessories installations, and warranties provided by Car Fashion (Car Festion Surat) comply with standard OEM quality guidelines and certified workshop safety protocols. Estimates are provided before work begins.";
+            ? "Car Fashion Surat respects your privacy. We strictly collect only necessary diagnostic and contact details to service your vehicle and schedule appointments. We never sell or share your personal data with third-party advertisers."
+            : "All automotive servicing, accessories installations, and warranties provided by Car Fashion Surat comply with standard OEM quality guidelines and certified workshop safety protocols. Estimates are provided before work begins.";
 
           var overlay = document.querySelector(".modal-overlay");
           if (!overlay) {

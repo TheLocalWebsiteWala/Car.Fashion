@@ -1626,20 +1626,21 @@ ul {
   display: block;
   width: 100%;
   text-align: center;
-  font-size: clamp(72px, 14vw, 200px);
+  font-size: clamp(32px, 11.2vw, 190px);
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   line-height: 0.88;
   text-transform: uppercase;
   pointer-events: none;
   user-select: none;
-  padding: clamp(30px, 5vw, 60px) 0 clamp(20px, 3vw, 44px);
+  padding: clamp(24px, 4vw, 50px) 12px clamp(16px, 2.5vw, 36px);
   background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   overflow: hidden;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .footer .container {
@@ -2009,6 +2010,12 @@ ul {
   .service-table td {
     padding: 14px 16px;
     font-size: 13.5px;
+  }
+
+  .footer-watermark {
+    font-size: clamp(26px, 10.5vw, 42px);
+    letter-spacing: -0.04em;
+    padding: 20px 8px 12px;
   }
 }
 

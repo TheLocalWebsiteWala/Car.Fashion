@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 160" width="680" height="160" fill="none">
+  <!-- Exact Reference Sports Car Silhouette -->
+  <g fill="#ffffff" transform="translate(5, 5)">
+    <path d="M 395.25,30.00 L 430.00,49.25 L 441.00,57.25 L 438.00,59.75 L 425.25,61.00 L 418.75,63.50 L 507.00,64.50 L 555.00,67.75 L 580.25,71.50 L 614.00,79.50 L 618.75,82.00 L 613.75,83.25 L 617.00,86.50 L 634.75,87.25 L 643.00,89.75 L 644.50,88.75 L 641.50,85.50 L 617.75,76.00 L 569.00,64.25 L 534.00,60.25 L 447.25,56.00 L 419.25,40.00 Z" fill="#ffffff" opacity="0.95" />
+    <path d="M 406.25,44.50 L 366.50,23.25 L 367.75,16.75 L 332.50,10.75 L 274.00,10.75 L 221.00,19.00 L 86.00,56.00 L 22.50,68.25 L 25.75,72.00 L 33.00,72.75 L 81.75,65.25 L 147.50,62.00 L 100.00,56.75 L 191.50,31.75 L 271.00,18.00 L 305.25,16.75 L 341.25,19.50 L 369.00,28.00 Z" fill="#ffffff" opacity="0.95" />
+  </g>
+
+  <!-- Clean Tracked-out Brand Typography matching reference font -->
+  <text
+    x="340"
+    y="142"
+    text-anchor="middle"
+    font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    font-size="32"
+    font-weight="700"
+    letter-spacing="8"
+    fill="#ffffff"
+  >CAR FESTION</text>
+</svg>

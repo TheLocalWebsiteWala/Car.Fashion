@@ -239,8 +239,8 @@ ul {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 16px;
+  gap: 6px;
+  font-size: clamp(13px, 3.5vw, 16px);
   font-weight: 500;
   letter-spacing: -0.01em;
   color: #fff;
@@ -255,7 +255,7 @@ ul {
   height: 1.3em;
   overflow: hidden;
   position: relative;
-  min-width: 135px;
+  min-width: clamp(100px, 28vw, 135px);
   text-align: left;
 }
 
@@ -284,11 +284,11 @@ ul {
 }
 
 .hero-title {
-  font-size: clamp(56px, 12vw, 168px);
+  font-size: clamp(36px, 11.2vw, 164px);
   font-weight: 700;
   line-height: 0.94;
   letter-spacing: -0.045em;
-  margin: 14px 0 6px;
+  margin: 12px 0 6px;
   background: linear-gradient(180deg, #ffffff 35%, #9a9a9a 66%, rgba(255, 255, 255, 0.05) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -304,7 +304,7 @@ ul {
   max-width: 620px;
   margin: 18px auto 0;
   color: #c9c9c9;
-  font-size: 17px;
+  font-size: clamp(14.5px, 3.6vw, 17px);
   line-height: 1.6;
   opacity: 0;
   transform: translateY(24px);
@@ -313,9 +313,9 @@ ul {
 
 .hero-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 28px;
   flex-wrap: wrap;
   opacity: 0;
   transform: translateY(20px);
@@ -786,6 +786,7 @@ ul {
 /* Service Turnaround Table */
 .service-table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: 18px;
   border: 1px solid var(--line);
   background: var(--card);
@@ -793,11 +794,24 @@ ul {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
+.service-table-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+
+.service-table-wrap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.service-table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(62, 240, 122, 0.35);
+  border-radius: 4px;
+}
+
 .service-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  min-width: 680px;
+  min-width: 640px;
 }
 
 .service-table th {
@@ -846,11 +860,11 @@ ul {
 }
 
 .brand-chip {
-  padding: 10px 20px;
+  padding: clamp(8px, 2.5vw, 10px) clamp(14px, 3.5vw, 20px);
   border-radius: 12px;
   background: var(--card);
   border: 1px solid var(--line);
-  font-size: 14px;
+  font-size: clamp(12.5px, 2.8vw, 14px);
   font-weight: 500;
   color: #d8d8d8;
   display: inline-flex;
@@ -1789,12 +1803,16 @@ ul {
   transform: none;
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive Breakpoints & Device Optimizations ---------- */
 @media (max-width: 1024px) {
+  .section {
+    padding: clamp(68px, 8.5vw, 92px) 0;
+  }
+
   .service-row,
   .service-row.reverse {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 36px;
   }
 
   .service-row.reverse .service-media {
@@ -1805,31 +1823,53 @@ ul {
     order: 1;
   }
 
-  .service-categories-grid,
-  .process-grid,
-  .reviews-grid,
-  .plans-grid,
-  .stats-grid {
+  .service-media {
+    max-height: 380px;
+    width: 100%;
+  }
+
+  .service-categories-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
 
   .why-grid,
   .faq-wrap,
-  .rating-row,
   .philosophy,
-  .contact-grid,
-  .footer-main {
+  .contact-grid {
     grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 32px;
   }
 }
 
-@media (max-width: 780px) {
-  .section {
-    padding: 74px 0;
-  }
-
+@media (max-width: 768px) {
   .nav-inner {
-    height: 56px;
+    height: 58px;
   }
 
   .hero {
@@ -1846,20 +1886,128 @@ ul {
   }
 
   .services-list {
-    gap: 52px;
+    gap: 48px;
   }
 
-  .service-categories-grid,
-  .process-grid,
-  .reviews-grid,
-  .plans-grid,
-  .stats-grid,
-  .form,
-  .footer-main {
+  .service-categories-grid {
     grid-template-columns: 1fr;
   }
 
+  .process-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  .plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 24px;
+  }
+
+  .form {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 24px 20px;
+  }
+
   .ba-slider-wrapper {
-    min-height: 280px;
+    min-height: clamp(240px, 48vw, 360px);
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 56px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin-inline: auto;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+    padding: 18px 14px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+    padding: 12px 14px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 36px 0 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .footer-bottom-links {
+    gap: 16px;
+  }
+
+  .step-card {
+    height: 410px;
+  }
+
+  .step-card-front,
+  .step-card-back {
+    padding: 18px 16px;
+  }
+
+  .step-card-front img {
+    height: 180px;
+    margin: 12px 0 16px;
+  }
+
+  .stat {
+    padding: 22px 18px;
+  }
+
+  .stat strong {
+    font-size: 38px;
+  }
+
+  .service-table th,
+  .service-table td {
+    padding: 14px 16px;
+    font-size: 13.5px;
   }
 }

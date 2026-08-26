@@ -22,7 +22,16 @@
         toggle.setAttribute("aria-expanded", menu.classList.contains("open") ? "true" : "false");
       });
       menu.addEventListener("click", function (e) {
-        if (e.target.tagName === "A") menu.classList.remove("open");
+        if (e.target.tagName === "A") {
+          menu.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && menu.classList.contains("open")) {
+          menu.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
       });
     }
 

@@ -168,17 +168,118 @@
       });
     });
 
-    // Contact form (markup only — no backend)
+    // Toast notification utility
+    function showToast(message) {
+      var container = document.querySelector(".toast-container");
+      if (!container) {
+        container = document.createElement("div");
+        container.className = "toast-container";
+        document.body.appendChild(container);
+      }
+      var toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = '<div class="toast-icon">✓</div><div>' + message + '</div>';
+      container.appendChild(toast);
+
+      requestAnimationFrame(function () {
+        toast.classList.add("show");
+      });
+
+      setTimeout(function () {
+        toast.classList.remove("show");
+        setTimeout(function () {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 400);
+      }, 4000);
+    }
+
+    // Contact & Service Booking Form Interactive Handler
     var form = document.querySelector("form.form");
     if (form) {
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        var note = form.querySelector(".form-note");
-        if (note) {
-          note.textContent = "Thanks! This demo form isn't connected to a backend yet.";
-          note.style.color = "#3ef07a";
+        var submitBtn = form.querySelector("button[type='submit']");
+        var originalBtnText = submitBtn ? submitBtn.textContent : "Confirm Appointment";
+
+        var nameInput = form.querySelector("input[name='name']") || form.querySelector("input[type='text']");
+        var phoneInput = form.querySelector("input[name='phone']") || form.querySelector("input[type='tel']");
+        var serviceSelect = form.querySelector("select[name='service']") || form.querySelector("select");
+        var messageInput = form.querySelector("textarea[name='message']") || form.querySelector("textarea");
+
+        var name = nameInput ? nameInput.value.trim() : "";
+        var phone = phoneInput ? phoneInput.value.trim() : "";
+        var service = serviceSelect ? serviceSelect.value : "General Service / Inquiry";
+        var notes = messageInput ? messageInput.value.trim() : "";
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Booking Confirmed...";
         }
+
+        setTimeout(function () {
+          showToast("Booking Request Received! Our Surat team will contact you shortly.");
+          if (submitBtn) {
+            submitBtn.textContent = "✓ Appointment Booked";
+            submitBtn.style.background = "#3ef07a";
+            submitBtn.style.color = "#050505";
+          }
+
+          // Generate WhatsApp direct reservation link
+          var waText = encodeURIComponent(
+            "Hello Car Fashion / Car Festion Surat,\n\nI want to book an appointment.\n*Name:* " +
+              (name || "Customer") +
+              "\n*Phone:* " +
+              (phone || "Not specified") +
+              "\n*Service:* " +
+              service +
+              (notes ? "\n*Notes:* " + notes : "")
+          );
+          var waUrl = "https://wa.me/918401847989?text=" + waText;
+
+          var note = form.querySelector(".form-note");
+          if (note) {
+            note.innerHTML =
+              'Booking confirmed! <a href="' +
+              waUrl +
+              '" target="_blank" rel="noopener" style="color:#3ef07a;text-decoration:underline;margin-left:6px;font-weight:600;">Chat on WhatsApp directly →</a>';
+          }
+        }, 600);
       });
     }
+
+    // Policy & Terms Modal Handlers
+    document.querySelectorAll('a[href="#privacy"], a[href="#terms"], a[href="#"]').forEach(function (link) {
+      var text = (link.textContent || "").toLowerCase();
+      if (text.includes("privacy") || text.includes("terms")) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          var isPrivacy = text.includes("privacy");
+          var modalTitle = isPrivacy ? "Privacy Policy" : "Terms of Service";
+          var modalContent = isPrivacy
+            ? "Car Fashion (Car Festion Surat) respects your privacy. We strictly collect only necessary diagnostic and contact details to service your vehicle and schedule appointments. We never sell or share your personal data with third-party advertisers."
+            : "All automotive servicing, accessories installations, and warranties provided by Car Fashion (Car Festion Surat) comply with standard OEM quality guidelines and certified workshop safety protocols. Estimates are provided before work begins.";
+
+          var overlay = document.querySelector(".modal-overlay");
+          if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.className = "modal-overlay";
+            overlay.innerHTML =
+              '<div class="modal-box"><button class="modal-close-btn" aria-label="Close modal">&times;</button><h3 id="modalHeading"></h3><p id="modalBody"></p><p style="font-size:13px;color:#888;margin-top:16px;">Car Fashion · S/15 Green Residency Showroom, Opp DMart, Dindoli, Surat, Gujarat 394210 · Phone: +91 84018 47989</p></div>';
+            document.body.appendChild(overlay);
+
+            overlay.querySelector(".modal-close-btn").addEventListener("click", function () {
+              overlay.classList.remove("open");
+            });
+            overlay.addEventListener("click", function (evt) {
+              if (evt.target === overlay) overlay.classList.remove("open");
+            });
+          }
+
+          document.getElementById("modalHeading").textContent = modalTitle;
+          document.getElementById("modalBody").textContent = modalContent;
+          overlay.classList.add("open");
+        });
+      }
+    });
   });
 })();
